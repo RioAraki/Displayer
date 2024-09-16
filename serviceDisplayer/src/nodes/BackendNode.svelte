@@ -1,31 +1,29 @@
 <script lang="ts">
     import { Handle, Position } from '@xyflow/svelte';
-    export let data: { gui_name: string };
+    export let data: { name: string };
 </script>
  
 
 
 <div class="backend-node">
-    <div class="gui-label">C# GUI</div>
-    <div class="gui-content">
-        <strong>{data.gui_name}</strong>
+    <div class="backend-label">C++ Backend</div>
+    <div class="backend-content">
+        <strong>{data.name}</strong>
+    </div>
+
+    <div class="connector">
+        <Handle id="value" type="target" position={Position.Top} />
+        <div class="onHoverText">Upstream</div>
+    </div>
+    
+    <div class="connector">
+        <Handle id="value" type="source" position={Position.Bottom} />
+        <div class="onHoverText">Downstream</div>
     </div>
 </div>
 
-<div class="connector">
-    <Handle id="value" type="source" position={Position.Top} />
-    <div class="onHoverText">Upstream</div>
-</div>
-
-<div class="connector">
-    <Handle id="value" type="source" position={Position.Bottom} />
-    <div class="onHoverText">Downstream</div>
-</div>
-
-
-
 <style>
-    .gui-node {
+    .backend-node {
         position: relative;
         padding: 1rem;
         border: 1px solid #00aeff;
@@ -34,10 +32,10 @@
         background: white;
     }
 
-    .gui-label {
+    .backend-label {
         position: absolute;
         top: -0.75rem; 
-        left: -1.5rem; 
+        left: -2.25rem; 
         white-space: nowrap;
         background-color: white;
         padding: 0 0.5rem;
@@ -45,7 +43,7 @@
         color: #003f5c;
     }
 
-    .gui-content {
+    .backend-content {
         display: flex;
         align-items: center;
         justify-content: center;

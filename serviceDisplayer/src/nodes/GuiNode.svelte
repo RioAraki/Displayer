@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Handle, Position } from '@xyflow/svelte';
-    export let data: { gui_name: string };
+    export let data: { name: string };
 </script>
  
 
@@ -8,21 +8,18 @@
 <div class="gui-node">
     <div class="gui-label">C# GUI</div>
     <div class="gui-content">
-        <strong>{data.gui_name}</strong>
+        <strong>{data.name}</strong>
+    </div>
+    <div class="connector">
+        <Handle id="value" type="target" position={Position.Top} />
+        <div class="onHoverText">Upstream</div>
+    </div>
+    
+    <div class="connector">
+        <Handle id="value" type="source" position={Position.Bottom} />
+        <div class="onHoverText">Downstream</div>
     </div>
 </div>
-
-<div class="connector">
-    <Handle id="value" type="target" position={Position.Top} />
-    <div class="onHoverText">Upstream</div>
-</div>
-
-<div class="connector">
-    <Handle id="value" type="source" position={Position.Bottom} />
-    <div class="onHoverText">Downstream</div>
-</div>
-
-
 
 <style>
     .gui-node {

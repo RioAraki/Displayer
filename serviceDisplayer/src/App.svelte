@@ -7,20 +7,34 @@ import {
     SvelteFlowProvider,
     Controls,
     Background,
-    MiniMap,
+    BackgroundVariant,
+    MiniMap, 
+    MarkerType,
     type Node,
     type Edge,
 } from '@xyflow/svelte';
 
 import '@xyflow/svelte/dist/style.css';
-import { onMount } from "svelte";
+
 import GuiNode from './nodes/GuiNode.svelte';
+import BackendNode from './nodes/BackendNode.svelte';
+
+import KafkaEdge from './edges/KafkaEdge.svelte';
+import ButtonEdge from './edges/ButtonEdge.svelte';
+
 import SaveJsonButton from './SaveJsonButton.svelte';
 import ContextMenu from './ContextMenu.svelte';
 
-
 const nodeTypes = {
     'gui': GuiNode,
+    'backend': BackendNode
+};
+
+const edgeTypes = {
+    'kafka': KafkaEdge,
+    'button': ButtonEdge
+    // 'https': HttpsNode,
+    // 'redis': RedisNode
 };
 
 const nodes = writable < Node[] > ([]);
@@ -33,21 +47,44 @@ let width: number;
 let height: number;
 let instance;
 let selectedNode = writable<string | null>(null);
+let selectedEdge = writable<string | null>(null);
 
 // Function to add a new node
 function addGuiNode() {
     nodes.update((n) => {
-        const newNodeId = `GUI${(n.length+1)}`
+        const newNodeId = `GUI_${(n.length+1)}`
         var newNode: Node = {
             id: newNodeId,
             type: 'gui',
             data: {
-                gui_name: "default gui",
+                name: "default gui",
             },
             position: {
-                x: Math.random() * 100,
-                y: Math.random() * 200
+                x: Math.round(Math.random() * 100),
+                y: Math.round(Math.random() * 100)
             },
+            width: 150,
+            height: 100,
+        };
+        return [...n, newNode];
+    });
+}
+
+function addBackendNode() {
+    nodes.update((n) => {
+        const newNodeId = `Backend_${(n.length+1)}`
+        var newNode: Node = {
+            id: newNodeId,
+            type: 'backend',
+            data: {
+                name: "default backend",
+            },
+            position: {
+                x: Math.round(Math.random() * 100),
+                y: Math.round(Math.random() * 100)
+            },
+            width: 150,
+            height: 100,
         };
         return [...n, newNode];
     });
@@ -68,25 +105,22 @@ function handleContextMenu({ detail: { event, node } }) {
 
 // Close the context menu if it's open whenever the window is clicked.
 function handlePaneClick() {
-    menu = null;
+  menu = null;
 }
 
 function handleNodeClick({ detail: { node } }) {
-    // Extract the data from the clicked node and set it to be displayed
-    selectedNode.set(node);
+  selectedNode.set(node);
 }
 
-function handleNodeDragStart({ detail: { node } }) {
-    // Extract the data from the clicked node and set it to be displayed
-    selectedNode.set(node);
+function handleEdgeClick({ detail: { edge } }) {
+  console.log("click edge")  
+  selectedEdge.set(edge);
 }
 
-function handleInputChange(key: string, value: string) {
-    // Update the selected node's data when input changes
+function handleNodeInputChange(key: string, value: string) {
     selectedNode.update((node) => {
         if (node) {
             node.data[key] = value;
-            // Update the nodes store with the modified node data
             nodes.update((n) =>
                 n.map((nd) => (nd.id === node.id ? { ...nd, data: { ...node.data } } : nd))
             );
@@ -95,13 +129,40 @@ function handleInputChange(key: string, value: string) {
     });
 }
 
+function handleEdgeInputChange(key: string, value: string) {
+    selectedEdge.update((edge) => {
+        if (edge) {
+            edge.data = {}
+            edge.data[key] = value;
+            edges.update((n) =>
+                n.map((nd) => (nd.id === edge.id ? { ...nd, data: { ...edge.data }, animated:true, type: "button"} : nd)),
+            );
+        }
+        return edge;
+    });
+}
+
+function handleEdgeCreate(connection) {
+  console.log("create marker")
+  return {
+    id: `edge-${connection.source}-${connection.target}`,
+    type: "button",
+    label: "default",
+    deletable: true,
+    source: connection.source,
+    target: connection.target,
+    animated: true,
+    markerStart: MarkerType.ArrowClosed,
+  };
+}
+
 const handleNodeDragStop = (event) => {
   let node = event.detail.targetNode;
+  selectedNode.set(node);
 
-  // Adjust the position to be a multiple of 100
   node.position = {
-    x: Math.round(node.position.x / 10) * 10,
-    y: Math.round(node.position.y / 10) * 10
+    x: Math.round(node.position.x / 50) * 50,
+    y: Math.round(node.position.y / 50) * 50
   };
 
   nodes.update((n) =>
@@ -109,16 +170,19 @@ const handleNodeDragStop = (event) => {
   );
 };
 
+
+
 </script>
 
 <div style="height:100vh;" bind:clientWidth={width} bind:clientHeight={height}>
 
     <SvelteFlowProvider>
         <button on:click={addGuiNode}>Add GUI Node</button>
+        <button on:click={addBackendNode}>Add Backend Node</button>
 
-        <div class="nodeEditor">
+        <div class="nodeEdgeEditor">
             {#if $selectedNode}
-                <p>{$selectedNode.id}</p>
+                <p>Selected Node: {$selectedNode.id}</p>
                 {#each Object.entries($selectedNode.data) as [key, value]}
                     <div class="inputGroup">
                         <label for={key}>{key}:</label>
@@ -126,29 +190,45 @@ const handleNodeDragStop = (event) => {
                             id={key}
                             type="text"
                             value={value}
-                            on:input={(e) => handleInputChange(key, e.target.value)}
+                            on:input={(e) => handleNodeInputChange(key, e.target.value)}
                         />
                     </div>
                 {/each}
+                <p>Position x: {$selectedNode.position.x}, y: {$selectedNode.position.y}</p>
             {:else}
-                display some text for now
+                No selected Node.
+            {/if}
+
+            {#if $selectedEdge}
+              <p>Selected Edge: {$selectedEdge.id}</p>
+              <div class="inputGroup">
+                  <label for="edgeType">Type:</label>
+                  <select id="edgeType" on:change={(e) => handleEdgeInputChange("type", e.target.value)}>
+                      <option value="Kafka">Kafka</option>
+                      <option value="Https">Https</option>
+                      <option value="Redis">Redis</option>
+                  </select>
+              </div>
+            {:else}
+                No selected Edge.
             {/if}
         </div>
         <SaveJsonButton />
         <SvelteFlow
         {nodeTypes}
+        {edgeTypes}
         {nodes}
         {edges}
         on:nodecontextmenu={handleContextMenu}
         on:paneclick={handlePaneClick}
         on:nodeclick={handleNodeClick}
-        on:nodedragstart={handleNodeDragStart}
-
         on:nodedragstop={handleNodeDragStop}
+        onedgecreate={handleEdgeCreate}
+        on:edgeclick={handleEdgeClick}
         fitView
         bind:this={instance}>
             <Controls />
-            <Background />
+            <Background variant={BackgroundVariant.Lines} gap=50/>
             {#if menu}
                 <ContextMenu
                     onClick={handlePaneClick}
@@ -165,7 +245,7 @@ const handleNodeDragStop = (event) => {
 </div>
 
 <style>
-    .nodeEditor {
+    .nodeEdgeEditor {
         margin-top: 20px;
         padding: 10px;
         background-color: #f9f9f9;
