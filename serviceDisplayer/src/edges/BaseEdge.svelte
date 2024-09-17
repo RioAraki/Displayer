@@ -4,8 +4,7 @@
       BaseEdge,
       type EdgeProps,
       EdgeLabelRenderer,
-      useEdges,
-      MarkerType
+      useEdges
     } from '@xyflow/svelte';
   
     type $$Props = EdgeProps;
@@ -17,9 +16,9 @@
     export let targetX: $$Props['targetX'];
     export let targetY: $$Props['targetY'];
     export let targetPosition: $$Props['targetPosition'];
-    export let style: $$Props['style'] = undefined;
-    export let markerEnd: $$Props['markerEnd'] = { type: MarkerType.ArrowClosed };
-
+    
+    export let data: $$Props['data'];
+  
     $: [edgePath, labelX, labelY] = getBezierPath({
       sourceX,
       sourceY,

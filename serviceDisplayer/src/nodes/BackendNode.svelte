@@ -35,7 +35,7 @@
     .backend-label {
         position: absolute;
         top: -0.75rem; 
-        left: -2.25rem; 
+        left: -4rem; 
         white-space: nowrap;
         background-color: white;
         padding: 0 0.5rem;

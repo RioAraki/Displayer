@@ -19,12 +19,13 @@ import '@xyflow/svelte/dist/style.css';
 import GuiNode from './nodes/GuiNode.svelte';
 import BackendNode from './nodes/BackendNode.svelte';
 
-import KafkaEdge from './edges/KafkaEdge.svelte';
-import ButtonEdge from './edges/ButtonEdge.svelte';
+import ButtonEdge from './edges/BaseEdge.svelte';
 import CustomEdgeMarker from './edges/CustomEdgeMarker.svelte';
 
 import SaveJsonButton from './SaveJsonButton.svelte';
 import ContextMenu from './ContextMenu.svelte';
+
+import * as Constants from './Constants.svelte';
 
 const nodeTypes = {
     'gui': GuiNode,
@@ -32,7 +33,6 @@ const nodeTypes = {
 };
 
 const edgeTypes = {
-    'kafka': KafkaEdge,
     'button': ButtonEdge
     // 'https': HttpsNode,
     // 'redis': RedisNode
@@ -131,12 +131,35 @@ function handleNodeInputChange(key: string, value: string) {
 }
 
 function handleEdgeInputChange(key: string, value: string) {
+    console.log("change edge input");
+
     selectedEdge.update((edge) => {
         if (edge) {
-            edge.data = {}
-            edge.data[key] = value;
+            switch (key) {
+                case "type":
+                    edge.markerStart = value;
+                    edge.style = `stroke-width: 2px; stroke: ${Constants.COLOR_MAP[value]}`;
+                    edge.markerEnd = Constants.MARKER_END_TYPES[value];
+                    break;
+                case "data":
+                case "link":
+                case "rule":
+                    edge.data = edge.data || {}; 
+                    edge.data[key] = value;
+                    
+                    break;
+                default:
+                    console.warn(`Unhandled key: ${key}`);
+            }
+
             edges.update((n) =>
-                n.map((nd) => (nd.id === edge.id ? { ...nd, data: { ...edge.data }, animated:true, type: "button"} : nd)),
+                n.map((nd) => (nd.id === edge.id ? { ...nd, 
+                    type: edge.type, 
+                    data: { ...edge.data }, 
+                    markerStart: edge.markerStart, 
+                    style: edge.style,
+                    markerEnd: edge.markerEnd
+                } : nd)),
             );
         }
         return edge;
@@ -144,41 +167,28 @@ function handleEdgeInputChange(key: string, value: string) {
 }
 
 function handleEdgeCreate(connection) {
-  console.log("create marker")
   return {
     id: `edge-${connection.source}-${connection.target}`,
-    label: "kafka",
     deletable: true,
     source: connection.source,
     target: connection.target,
     animated: true,
-    style: 'stroke-width: 2px; stroke: #FF4000',
+    style: 'stroke-width: 2px; stroke: #FF6F00',
     markerStart: "kafka",
+    data: {
+        "data":"",
+        "link":"",
+        "rule":""
+    },
     markerEnd: {
       type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-      color: '#FF4000'
+      width: 10,
+      height: 10,
+      color: '#FF6F00'
     },
-
+    label: ``
   };
 }
-
-const handleNodeDragStop = (event) => {
-  let node = event.detail.targetNode;
-  selectedNode.set(node);
-
-  node.position = {
-    x: Math.round(node.position.x / 50) * 50,
-    y: Math.round(node.position.y / 50) * 50
-  };
-
-  nodes.update((n) =>
-      n.map((nd) => (nd.id === node.id ? { ...nd, position: { ...node.position } } : nd))
-  );
-};
-
-
 
 </script>
 
@@ -207,16 +217,30 @@ const handleNodeDragStop = (event) => {
                 No selected Node.
             {/if}
 
+            <hr class="separator" />
+
             {#if $selectedEdge}
-              <p>Selected Edge: {$selectedEdge.id}</p>
-              <div class="inputGroup">
-                  <label for="edgeType">Type:</label>
-                  <select id="edgeType" on:change={(e) => handleEdgeInputChange("type", e.target.value)}>
-                      <option value="Kafka">Kafka</option>
-                      <option value="Https">Https</option>
-                      <option value="Redis">Redis</option>
-                  </select>
-              </div>
+                <p>Selected Edge: {$selectedEdge.id}</p>
+                <div class="inputGroup">
+                    <label for="edgeType">Type:</label>
+                    <select id="edgeType" on:change={(e) => handleEdgeInputChange("type", e.target.value)}>
+                        <option value="kafka">Kafka</option>
+                        <option value="https">Https</option>
+                        <option value="redis">Redis</option>
+                    </select>
+                </div>
+
+                {#each Object.entries($selectedEdge.data) as [key, value]}
+                    <div class="inputGroup">
+                        <label for={key}>{key}:</label>
+                        <input
+                            id={key}
+                            type="text"
+                            value={value}
+                            on:input={(e) => handleEdgeInputChange(key, e.target.value)}
+                        />
+                    </div>
+                {/each}
             {:else}
                 No selected Edge.
             {/if}
@@ -230,7 +254,6 @@ const handleNodeDragStop = (event) => {
             on:nodecontextmenu={handleContextMenu}
             on:paneclick={handlePaneClick}
             on:nodeclick={handleNodeClick}
-            on:nodedragstop={handleNodeDragStop}
             onedgecreate={handleEdgeCreate}
             on:edgeclick={handleEdgeClick}
             fitView
@@ -256,13 +279,18 @@ const handleNodeDragStop = (event) => {
 
 <style>
     .nodeEdgeEditor {
-        margin-top: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px; /* Adjust width as needed */
+        height: 100%;
+        overflow-y: auto;
         padding: 10px;
         background-color: #f9f9f9;
-        border: 1px solid #ddd;
+        border-left: 1px solid #ddd;
         z-index: 999;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     }
-
     .inputGroup {
         margin-bottom: 10px;
     }
@@ -270,5 +298,11 @@ const handleNodeDragStop = (event) => {
     .inputGroup label {
         margin-right: 10px;
         font-weight: bold;
+    }
+
+    .separator {
+        margin: 20px 0;
+        border: 0;
+        border-top: 1px solid #ddd;
     }
 </style>
