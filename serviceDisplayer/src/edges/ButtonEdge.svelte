@@ -16,7 +16,7 @@
     export let targetX: $$Props['targetX'];
     export let targetY: $$Props['targetY'];
     export let targetPosition: $$Props['targetPosition'];
-    export let markerEnd: $$Props['markerEnd'] = undefined;
+    export let markerEnd: $$Props['markerEnd'] = { type: MarkerType.ArrowClosed };
     export let style: $$Props['style'] = undefined;
   
     $: [edgePath, labelX, labelY] = getBezierPath({

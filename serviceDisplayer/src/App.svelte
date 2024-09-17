@@ -21,6 +21,7 @@ import BackendNode from './nodes/BackendNode.svelte';
 
 import KafkaEdge from './edges/KafkaEdge.svelte';
 import ButtonEdge from './edges/ButtonEdge.svelte';
+import CustomEdgeMarker from './edges/CustomEdgeMarker.svelte';
 
 import SaveJsonButton from './SaveJsonButton.svelte';
 import ContextMenu from './ContextMenu.svelte';
@@ -64,7 +65,7 @@ function addGuiNode() {
                 y: Math.round(Math.random() * 100)
             },
             width: 150,
-            height: 100,
+            height: 50,
         };
         return [...n, newNode];
     });
@@ -146,13 +147,20 @@ function handleEdgeCreate(connection) {
   console.log("create marker")
   return {
     id: `edge-${connection.source}-${connection.target}`,
-    type: "button",
-    label: "default",
+    label: "kafka",
     deletable: true,
     source: connection.source,
     target: connection.target,
     animated: true,
-    markerStart: MarkerType.ArrowClosed,
+    style: 'stroke-width: 2px; stroke: #FF4000',
+    markerStart: "kafka",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#FF4000'
+    },
+
   };
 }
 
@@ -215,18 +223,19 @@ const handleNodeDragStop = (event) => {
         </div>
         <SaveJsonButton />
         <SvelteFlow
-        {nodeTypes}
-        {edgeTypes}
-        {nodes}
-        {edges}
-        on:nodecontextmenu={handleContextMenu}
-        on:paneclick={handlePaneClick}
-        on:nodeclick={handleNodeClick}
-        on:nodedragstop={handleNodeDragStop}
-        onedgecreate={handleEdgeCreate}
-        on:edgeclick={handleEdgeClick}
-        fitView
-        bind:this={instance}>
+            {nodeTypes}
+            {edgeTypes}
+            {nodes}
+            {edges}
+            on:nodecontextmenu={handleContextMenu}
+            on:paneclick={handlePaneClick}
+            on:nodeclick={handleNodeClick}
+            on:nodedragstop={handleNodeDragStop}
+            onedgecreate={handleEdgeCreate}
+            on:edgeclick={handleEdgeClick}
+            fitView
+            bind:this={instance}
+        >
             <Controls />
             <Background variant={BackgroundVariant.Lines} gap=50/>
             {#if menu}
@@ -239,6 +248,7 @@ const handleNodeDragStop = (event) => {
                     bottom={menu.bottom}
                 />
             {/if}
+            <CustomEdgeMarker />
             <MiniMap />
         </SvelteFlow>
     </SvelteFlowProvider>
