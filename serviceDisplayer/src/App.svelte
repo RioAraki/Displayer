@@ -23,6 +23,8 @@ import ButtonEdge from './edges/BaseEdge.svelte';
 import CustomEdgeMarker from './edges/CustomEdgeMarker.svelte';
 
 import SaveJsonButton from './SaveJsonButton.svelte';
+import LoadJsonButton from './LoadJsonButton.svelte';
+
 import ContextMenu from './ContextMenu.svelte';
 
 import * as Constants from './Constants.svelte';
@@ -246,6 +248,7 @@ function handleEdgeCreate(connection) {
             {/if}
         </div>
         <SaveJsonButton />
+        <LoadJsonButton />
         <SvelteFlow
             {nodeTypes}
             {edgeTypes}
