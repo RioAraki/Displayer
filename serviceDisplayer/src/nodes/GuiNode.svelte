@@ -1,11 +1,12 @@
 <script lang="ts">
     import { Handle, Position } from '@xyflow/svelte';
     export let data: { name: string };
+    export let selected;
 </script>
  
 
 
-<div class="gui-node">
+<div class={`gui-node ${selected ? "selected-node" : ''}`}>
     <div class="gui-label">C# GUI</div>
     <div class="gui-content">
         <strong>{data.name}</strong>
@@ -25,9 +26,18 @@
     .gui-node {
         position: relative;
         padding: 1rem;
-        border: 1px solid #00aeff;
+        border: 1.5px solid #00aeff;
         border-radius: 10px;
         font-size: 0.9rem;
+        background: white;
+    }
+
+    .selected-node {
+        position: relative;
+        padding: 1rem;
+        border: 2px solid #00aeff;
+        border-radius: 10px;
+        font-size: 1rem;
         background: white;
     }
 

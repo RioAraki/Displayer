@@ -82,6 +82,7 @@ function addBackendNode() {
             data: {
                 name: "default backend",
             },
+            selected: false,
             position: {
                 x: Math.round(Math.random() * 100),
                 y: Math.round(Math.random() * 100)
@@ -113,7 +114,17 @@ function handlePaneClick() {
 
 function handleNodeClick({ detail: { node } }) {
   selectedNode.set(node);
+  selectedNode.update((node) => {
+        if (node) {
+            nodes.update((n) =>
+                n.map((nd) => (nd.id === node.id ? { ...nd, selected: true } : { ...nd, selected: false }))
+            );
+        }
+        console.log("node selected:", node)
+        return node;
+    });
 }
+
 
 function handleEdgeClick({ detail: { edge } }) {
   console.log("click edge")  
@@ -214,7 +225,6 @@ function handleEdgeCreate(connection) {
                         />
                     </div>
                 {/each}
-                <p>Position x: {$selectedNode.position.x}, y: {$selectedNode.position.y}</p>
             {:else}
                 No selected Node.
             {/if}

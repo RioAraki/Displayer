@@ -1,11 +1,12 @@
 <script lang="ts">
     import { Handle, Position } from '@xyflow/svelte';
     export let data: { name: string };
+    export let selected;
 </script>
  
 
 
-<div class="backend-node">
+<div class={`backend-node ${selected ? "selected-node" : ''}`}>
     <div class="backend-label">C++ Backend</div>
     <div class="backend-content">
         <strong>{data.name}</strong>
@@ -26,9 +27,18 @@
     .backend-node {
         position: relative;
         padding: 1rem;
-        border: 1px solid #00aeff;
+        border: 1.5px solid #42c44f;
         border-radius: 10px;
         font-size: 0.9rem;
+        background: white;
+    }
+
+    .selected-node {
+        position: relative;
+        padding: 1rem;
+        border: 2px solid #42c44f;
+        border-radius: 10px;
+        font-size: 1rem;
         background: white;
     }
 

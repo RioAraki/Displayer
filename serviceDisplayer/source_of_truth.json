@@ -1,1 +1,951 @@
-{"nodes":[{"id":"Backend_1","type":"backend","data":{"name":"TVS"},"position":{"x":363.42399598804207,"y":252.9681888836045},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_2","type":"backend","data":{"name":"TradeAggService"},"position":{"x":130.4139116783012,"y":252.73342566317785},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"GUI_3","type":"gui","data":{"name":"Jag Trades"},"position":{"x":162.4365695431767,"y":388.98034955204986},"width":150,"height":50,"measured":{"width":150,"height":50},"selected":false,"dragging":false},{"id":"GUI_4","type":"gui","data":{"name":"Trading View"},"position":{"x":343.1246666072366,"y":395.11188016905885},"width":150,"height":50,"measured":{"width":150,"height":50},"selected":false,"dragging":false},{"id":"GUI_5","type":"gui","data":{"name":"Price Depth"},"position":{"x":-635.4490987344874,"y":390.8485709739893},"width":150,"height":50,"measured":{"width":150,"height":50},"selected":false,"dragging":false},{"id":"Backend_6","type":"backend","data":{"name":"KPI EXEC"},"position":{"x":-194.25571196956048,"y":64.79103712190296},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_7","type":"backend","data":{"name":"KPI ENRICH"},"position":{"x":244.9316344831392,"y":64.33866450492312},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_8","type":"backend","data":{"name":"KPI IMPL"},"position":{"x":24.694375859595198,"y":65.86485050596886},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_9","type":"backend","data":{"name":"OPA/BORG"},"position":{"x":-419.4644864138941,"y":-36.157965282347305},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_10","type":"backend","data":{"name":"Abacus"},"position":{"x":-426.0425138611732,"y":-178.38278069683435},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_11","type":"backend","data":{"name":"NPR"},"position":{"x":-239.4999999999999,"y":-36.999999999999886},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_12","type":"backend","data":{"name":"BVF"},"position":{"x":-429.92565082250127,"y":-322.3866014724124},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_13","type":"backend","data":{"name":"RPG"},"position":{"x":-280.15419280019717,"y":-425.48071159625727},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":true,"dragging":false},{"id":"Backend_14","type":"backend","data":{"name":"IMLP Proxy"},"position":{"x":-679.4999999999995,"y":-660.4999999999998},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_15","type":"backend","data":{"name":"Arbe"},"position":{"x":-519.2342705875858,"y":-418.7550087214265},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_16","type":"backend","data":{"name":"Kraken"},"position":{"x":497.87768094135737,"y":137.69736389555314},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_17","type":"backend","data":{"name":"EML"},"position":{"x":83.36625700223628,"y":-854.21476390659},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_18","type":"backend","data":{"name":"IML"},"position":{"x":-600.3057708845826,"y":-856.7807017724483},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_19","type":"backend","data":{"name":"DSS"},"position":{"x":-644.1602608700114,"y":221.2088890029079},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false},{"id":"Backend_20","type":"backend","data":{"name":"Exchange"},"position":{"x":-249.59351898688988,"y":-1050.6798232450974},"width":150,"height":100,"measured":{"width":150,"height":100},"selected":false,"dragging":false}],"edges":[{"id":"edge-Backend_1-GUI_4","deletable":true,"source":"Backend_1","target":"GUI_4","animated":true,"style":"stroke-width: 2px; stroke: #D82C20","markerStart":"redis","data":{"data":"trading tick data","link":"","rule":"once per 10sec"},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#D82C20"},"label":"","selected":false},{"id":"edge-Backend_2-GUI_3","deletable":true,"source":"Backend_2","target":"GUI_3","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"TradingAggregationFeed","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_6-Backend_2","deletable":true,"source":"Backend_6","target":"Backend_2","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"TradingActivityFeed","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_7-Backend_2","deletable":true,"source":"Backend_7","target":"Backend_2","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"TradingActivityFeed","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_8-Backend_2","deletable":true,"source":"Backend_8","target":"Backend_2","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"trading activity feed","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_9-Backend_6","deletable":true,"source":"Backend_9","target":"Backend_6","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"execution tick","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_10-Backend_9","deletable":true,"source":"Backend_10","target":"Backend_9","animated":true,"style":"stroke-width: 2px; stroke: #007ACC","markerStart":"https","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#007ACC"},"label":"","selected":false},{"id":"edge-Backend_12-Backend_10","deletable":true,"source":"Backend_12","target":"Backend_10","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"base val","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_10-Backend_11","deletable":true,"source":"Backend_10","target":"Backend_11","animated":true,"style":"stroke-width: 2px; stroke: #007ACC","markerStart":"https","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#007ACC"},"label":"","selected":false},{"id":"edge-Backend_13-Backend_12","deletable":true,"source":"Backend_13","target":"Backend_12","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"ref price","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_15-Backend_12","deletable":true,"source":"Backend_15","target":"Backend_12","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"instrument available","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_16-Backend_1","deletable":true,"source":"Backend_16","target":"Backend_1","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_17-Backend_16","deletable":true,"source":"Backend_17","target":"Backend_16","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_16-Backend_17","deletable":true,"source":"Backend_16","target":"Backend_17","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"orders","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_18-Backend_14","deletable":true,"source":"Backend_18","target":"Backend_14","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"","link":"DDiff IMLP","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_19-GUI_5","deletable":true,"source":"Backend_19","target":"GUI_5","animated":true,"style":"stroke-width: 2px; stroke: #D82C20","markerStart":"redis","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#D82C20"},"label":"","selected":false},{"id":"edge-Backend_14-Backend_19","deletable":true,"source":"Backend_14","target":"Backend_19","animated":true,"style":"stroke-width: 2px; stroke: #FF6F00","markerStart":"kafka","data":{"data":"imlp","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#FF6F00"},"label":"","selected":false},{"id":"edge-Backend_20-Backend_18","deletable":true,"source":"Backend_20","target":"Backend_18","animated":true,"style":"stroke-width: 2px; stroke: #007ACC","markerStart":"https","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#007ACC"},"label":"","selected":false},{"id":"edge-Backend_20-Backend_17","deletable":true,"source":"Backend_20","target":"Backend_17","animated":true,"style":"stroke-width: 2px; stroke: #007ACC","markerStart":"https","data":{"data":"","link":"","rule":""},"markerEnd":{"type":"arrowclosed","width":10,"height":10,"color":"#007ACC"},"label":"","selected":false}],"viewport":{"x":1692.6018865931233,"y":430.5329681188166,"zoom":1.1486983549970355}}
+{
+    "nodes": [
+        {
+            "id": "Backend_1",
+            "type": "backend",
+            "data": {
+                "name": "TVS"
+            },
+            "position": {
+                "x": 363.42399598804207,
+                "y": 252.9681888836045
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_2",
+            "type": "backend",
+            "data": {
+                "name": "TradeAggService"
+            },
+            "position": {
+                "x": 130.4139116783012,
+                "y": 252.73342566317785
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "GUI_3",
+            "type": "gui",
+            "data": {
+                "name": "Jag Trades"
+            },
+            "position": {
+                "x": 162.4365695431767,
+                "y": 388.98034955204986
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "GUI_4",
+            "type": "gui",
+            "data": {
+                "name": "Trading View"
+            },
+            "position": {
+                "x": 343.1246666072366,
+                "y": 395.11188016905885
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "GUI_5",
+            "type": "gui",
+            "data": {
+                "name": "Price Depth"
+            },
+            "position": {
+                "x": -635.4490987344874,
+                "y": 390.8485709739893
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_6",
+            "type": "backend",
+            "data": {
+                "name": "KPI EXEC"
+            },
+            "position": {
+                "x": -194.25571196956048,
+                "y": 64.79103712190296
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_7",
+            "type": "backend",
+            "data": {
+                "name": "KPI ENRICH"
+            },
+            "position": {
+                "x": 244.9316344831392,
+                "y": 64.33866450492312
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_8",
+            "type": "backend",
+            "data": {
+                "name": "KPI IMPL"
+            },
+            "position": {
+                "x": 24.694375859595198,
+                "y": 65.86485050596886
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_9",
+            "type": "backend",
+            "data": {
+                "name": "OPA/BORG"
+            },
+            "position": {
+                "x": -419.4644864138941,
+                "y": -36.157965282347305
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_10",
+            "type": "backend",
+            "data": {
+                "name": "Abacus"
+            },
+            "position": {
+                "x": -426.0425138611732,
+                "y": -178.38278069683435
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_11",
+            "type": "backend",
+            "data": {
+                "name": "NPR"
+            },
+            "position": {
+                "x": -239.4999999999999,
+                "y": -36.999999999999886
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_12",
+            "type": "backend",
+            "data": {
+                "name": "BVF"
+            },
+            "position": {
+                "x": -429.92565082250127,
+                "y": -322.3866014724124
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_13",
+            "type": "backend",
+            "data": {
+                "name": "RPG"
+            },
+            "position": {
+                "x": -280.15419280019717,
+                "y": -425.48071159625727
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_14",
+            "type": "backend",
+            "data": {
+                "name": "IMLP Proxy"
+            },
+            "position": {
+                "x": -679.4999999999995,
+                "y": -660.4999999999998
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_15",
+            "type": "backend",
+            "data": {
+                "name": "Arbe"
+            },
+            "position": {
+                "x": -519.2342705875858,
+                "y": -418.7550087214265
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_16",
+            "type": "backend",
+            "data": {
+                "name": "Kraken"
+            },
+            "position": {
+                "x": 497.87768094135737,
+                "y": 137.69736389555314
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_17",
+            "type": "backend",
+            "data": {
+                "name": "EML"
+            },
+            "position": {
+                "x": 83.36625700223628,
+                "y": -854.21476390659
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_18",
+            "type": "backend",
+            "data": {
+                "name": "IML"
+            },
+            "position": {
+                "x": -600.3057708845826,
+                "y": -856.7807017724483
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_19",
+            "type": "backend",
+            "data": {
+                "name": "DSS"
+            },
+            "position": {
+                "x": -644.1602608700114,
+                "y": 221.2088890029079
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_20",
+            "type": "backend",
+            "data": {
+                "name": "Exchange"
+            },
+            "position": {
+                "x": -249.59351898688988,
+                "y": -1050.6798232450974
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "GUI_21",
+            "type": "gui",
+            "data": {
+                "name": "tiger"
+            },
+            "position": {
+                "x": -898.5117656826633,
+                "y": 388.6441691221921
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "Backend_22",
+            "type": "backend",
+            "data": {
+                "name": "PSI Squid"
+            },
+            "position": {
+                "x": -896.3369903343378,
+                "y": 222.79295533637517
+            },
+            "width": 150,
+            "height": 100,
+            "measured": {
+                "width": 150,
+                "height": 100
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "GUI_23",
+            "type": "gui",
+            "data": {
+                "name": "test2"
+            },
+            "position": {
+                "x": 233,
+                "y": -123
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": true,
+            "dragging": false
+        },
+        {
+            "id": "GUI_24",
+            "type": "gui",
+            "data": {
+                "name": "test1"
+            },
+            "position": {
+                "x": -27,
+                "y": -145.5
+            },
+            "width": 150,
+            "height": 50,
+            "measured": {
+                "width": 150,
+                "height": 50
+            },
+            "selected": false,
+            "dragging": false
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge-Backend_1-GUI_4",
+            "deletable": true,
+            "source": "Backend_1",
+            "target": "GUI_4",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #D82C20",
+            "markerStart": "redis",
+            "data": {
+                "data": "trading tick data",
+                "link": "",
+                "rule": "once per 10sec"
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#D82C20"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_2-GUI_3",
+            "deletable": true,
+            "source": "Backend_2",
+            "target": "GUI_3",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "TradingAggregationFeed",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_6-Backend_2",
+            "deletable": true,
+            "source": "Backend_6",
+            "target": "Backend_2",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "TradingActivityFeed",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_7-Backend_2",
+            "deletable": true,
+            "source": "Backend_7",
+            "target": "Backend_2",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "TradingActivityFeed",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_8-Backend_2",
+            "deletable": true,
+            "source": "Backend_8",
+            "target": "Backend_2",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "trading activity feed",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_9-Backend_6",
+            "deletable": true,
+            "source": "Backend_9",
+            "target": "Backend_6",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "execution tick",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_10-Backend_9",
+            "deletable": true,
+            "source": "Backend_10",
+            "target": "Backend_9",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #007ACC",
+            "markerStart": "https",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#007ACC"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_12-Backend_10",
+            "deletable": true,
+            "source": "Backend_12",
+            "target": "Backend_10",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "base val",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_10-Backend_11",
+            "deletable": true,
+            "source": "Backend_10",
+            "target": "Backend_11",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #007ACC",
+            "markerStart": "https",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#007ACC"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_13-Backend_12",
+            "deletable": true,
+            "source": "Backend_13",
+            "target": "Backend_12",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "ref price",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_15-Backend_12",
+            "deletable": true,
+            "source": "Backend_15",
+            "target": "Backend_12",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "instrument available",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_16-Backend_1",
+            "deletable": true,
+            "source": "Backend_16",
+            "target": "Backend_1",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_17-Backend_16",
+            "deletable": true,
+            "source": "Backend_17",
+            "target": "Backend_16",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_16-Backend_17",
+            "deletable": true,
+            "source": "Backend_16",
+            "target": "Backend_17",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "orders",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_18-Backend_14",
+            "deletable": true,
+            "source": "Backend_18",
+            "target": "Backend_14",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "DDiff IMLP",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_19-GUI_5",
+            "deletable": true,
+            "source": "Backend_19",
+            "target": "GUI_5",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #D82C20",
+            "markerStart": "redis",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#D82C20"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_14-Backend_19",
+            "deletable": true,
+            "source": "Backend_14",
+            "target": "Backend_19",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "imlp",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_20-Backend_18",
+            "deletable": true,
+            "source": "Backend_20",
+            "target": "Backend_18",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #007ACC",
+            "markerStart": "https",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#007ACC"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_20-Backend_17",
+            "deletable": true,
+            "source": "Backend_20",
+            "target": "Backend_17",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #007ACC",
+            "markerStart": "https",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#007ACC"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_22-GUI_21",
+            "deletable": true,
+            "source": "Backend_22",
+            "target": "GUI_21",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": "MLP5"
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-Backend_14-Backend_22",
+            "deletable": true,
+            "source": "Backend_14",
+            "target": "Backend_22",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        },
+        {
+            "id": "edge-GUI_24-Backend_8",
+            "deletable": true,
+            "source": "GUI_24",
+            "target": "Backend_8",
+            "animated": true,
+            "style": "stroke-width: 2px; stroke: #FF6F00",
+            "markerStart": "kafka",
+            "data": {
+                "data": "",
+                "link": "",
+                "rule": ""
+            },
+            "markerEnd": {
+                "type": "arrowclosed",
+                "width": 10,
+                "height": 10,
+                "color": "#FF6F00"
+            },
+            "label": "",
+            "selected": false
+        }
+    ],
+    "viewport": {
+        "x": 990.6653154934174,
+        "y": 675.9875544959862,
+        "zoom": 1.7097609485128915
+    }
+}
